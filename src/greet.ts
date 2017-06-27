@@ -1,47 +1,28 @@
+import EmailData from "./email-data"
+import {Person, IGreet} from "./email-data"
 
-
-interface IGreetCtor{
-    new(name: String) : IGreet
+function emailSender(emailData : EmailData){
+    // use NodeMailer
 }
 
-interface IGreet{
-    greet() : String
+emailSender({
+    coderName : "",
+    email : "",
+    templateName : "",
+    feedbackSeason : "",
+    subject : ""
+});
+
+
+function greet(person:Person) : String{
+    //console.log(person);
+    return "Hello, " + person.name + " " + person.surname + " @ " + person.email;
 }
 
-class XhosaGreeter implements IGreet{
-    private name : String;
-    constructor(name:String) {
-        this.name = name;
-    }
-
-    greet() : String{
-        return "Hello, " + this.name;
-    }
+function doGreet(greeter : IGreet){
+    greeter({name : "Jo", surname : "Ntombi", email : "andre@email.com"})
 }
 
-import IGreeter from "./igreeter";
-import {afrikaansGreeting, xhosaGreeting} from "./greetings"
+console.log(greet({ name : "Andre", surname : "Botha", email : "andre@botha.com"}));
 
-//function
-
-type Language = "afrikaans" | "english" | "xhosa"
-
-function greet(name:String, language:Language) : String{
-
-    let messageMap = new Map<String, IGreeter>();
-    messageMap.set('xhosa', xhosaGreeting);
-    messageMap.set('afrikaans', afrikaansGreeting);
-
-    let greeter = messageMap.get(language);
-    if (greeter)
-        return greeter(name);
-    return `Invalid language '${language}'`;
-
-}
-
-export default greet
-
-
-var s : Language = "xhosa";
-
-console.log(greet('Andre', s));
+//console.log(greet({ name : "Andre"}));

@@ -1,14 +1,20 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const greetings_1 = require("./greetings");
-function greet(name, language) {
-    let messageMap = new Map();
-    messageMap.set('xhosa', greetings_1.xhosaGreeting);
-    messageMap.set('afrikaans', greetings_1.afrikaansGreeting);
-    let greeter = messageMap.get(language);
-    if (greeter)
-        return greeter(name);
-    return `Invalid language '${language}'`;
+function emailSender(emailData) {
+    // use NodeMailer
 }
-var s = "xhosa";
-console.log(greet('Andre', s));
+emailSender({
+    coderName: "",
+    email: "",
+    templateName: "",
+    feedbackSeason: "",
+    subject: ""
+});
+function greet(person) {
+    //console.log(person);
+    return "Hello, " + person.name + " " + person.surname + " @ " + person.email;
+}
+function doGreet(greeter) {
+    greeter({ name: "Jo", surname: "Ntombi", email: "andre@email.com" });
+}
+console.log(greet({ name: "Andre", surname: "Botha", email: "andre@botha.com" }));
+//console.log(greet({ name : "Andre"}));
