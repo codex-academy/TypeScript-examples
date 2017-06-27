@@ -9,7 +9,7 @@ interface EmailData {
 export default EmailData
 
 export interface Person{
-    email? : String
+    email? : String     // optional field
     name : String
     surname : String
 }
